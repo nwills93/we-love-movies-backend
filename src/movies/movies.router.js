@@ -2,6 +2,7 @@ const router = require("express").Router()
 const controller = require("./movies.controller")
 const methodNotAllowed = require("../errors/methodNotAllowed")
 
+//all routes for the 'movies' resource.
 router.route("/:movieId/reviews").get(controller.listAllReviewsForAMovie).all(methodNotAllowed)
 router.route("/:movieId/theaters").get(controller.listAllTheatersForAMovie).all(methodNotAllowed)
 router.route("/:movieId").get(controller.read).all(methodNotAllowed)

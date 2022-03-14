@@ -1,8 +1,7 @@
 const reviewsService = require("./reviews.service")
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary")
-// const hasProperties = require("../errors/hasProperties")
-// const hasRequiredProperties = hasProperties("score")
 
+//validation function to check if review exists.
 async function reviewExists(req, res, next) {
     const reviewId = req.params.reviewId
     const foundReview = await reviewsService.read(reviewId)
@@ -14,6 +13,7 @@ async function reviewExists(req, res, next) {
     }
 }
 
+//updates one review.
 async function update(req, res, next) {
     const updatedReview = {
         ...req.body.data,
@@ -23,6 +23,7 @@ async function update(req, res, next) {
     res.json({data})
 }
 
+//deletes one review.
 async function destroy(req, res, next) {
     const {review} = res.locals
     await reviewsService.delete(review.review_id)
